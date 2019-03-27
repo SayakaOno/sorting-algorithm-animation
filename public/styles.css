@@ -1,0 +1,17 @@
+.visual table,
+.visual td {
+  border-spacing: 0;
+}
+.visual table {
+  height: 100px;
+  vertical-align: baseline;
+}
+.visual td {
+  padding: 0;
+  width: 5px;
+  vertical-align: bottom;
+}
+.visual div {
+  background-color: pink;
+  border: solid 1px #000;
+}
