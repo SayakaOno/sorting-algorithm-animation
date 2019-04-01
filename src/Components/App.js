@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Visual from './Visual';
 import bubbleSort from '../Algorithms/bubbleSort';
 import selectionSort from '../Algorithms/selectionSort';
+import insertionSort from '../Algorithms/insertionSort';
 const array1 = [5, 1, 2, 3, 4];
 const array2 = [5, 4, 3, 2, 1];
 
@@ -19,9 +20,16 @@ const App = () => {
   });
   const [selectionMinIndex, setSelectionMinIndex] = useState(0);
 
+  const [insertionArray, setInsertionArray] = useState(array1);
+  const [insertionCounter, setInsertionCounter] = useState({
+    i: 0,
+    counter: 1
+  });
+
   const onStartClick = () => {
     increaseBubbleStep(1000);
-    increaseSelectionStep(1000);
+    startSelectionSort(1000);
+    startInsertionSort(1000);
   };
 
   const increaseBubbleStep = ms => {
@@ -42,7 +50,7 @@ const App = () => {
     }, ms);
   };
 
-  const increaseSelectionStep = ms => {
+  const startSelectionSort = ms => {
     selectionSort(
       selectionArray,
       selectionCounter.i,
@@ -53,6 +61,17 @@ const App = () => {
       setSelectionCounter,
       ms
     );
+  };
+
+  const startInsertionSort = ms => {
+    insertionSort(
+      array1,
+      insertionCounter.counter,
+      insertionCounter.i,
+      setInsertionArray,
+      setInsertionCounter,
+      ms
+    )();
   };
 
   return (
@@ -78,6 +97,7 @@ const App = () => {
         comparedIndices={[selectionCounter.i, selectionCounter.j]}
         minIndex={selectionMinIndex}
       />
+      <Visual title={'insertion Sort'} array={insertionArray} />
     </div>
   );
 };
