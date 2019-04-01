@@ -1,14 +1,44 @@
-function insertionSort(array) {
-  let counter = 1;
+function insertionSort(
+  array,
+  counter1,
+  i1,
+  setInsertionArray,
+  setInsertionCounter,
+  ms
+) {
+  let counter = counter1;
   let newArray = array.slice();
-  while (counter < newArray.length) {
-    for (let i = 0; i < counter; i++) {
-      if (newArray[counter] < newArray[i]) {
-        newArray.splice(i, 0, newArray.splice(counter, 1)[0]);
+  let i = i1;
+
+  return function() {
+    let id = setInterval(() => {
+      if (counter < newArray.length) {
+        if (i < counter) {
+          if (newArray[counter] < newArray[i]) {
+            newArray.splice(i, 0, newArray.splice(counter, 1)[0]);
+            setInsertionArray(newArray);
+            console.log(newArray);
+            i = 0;
+          } else {
+            if (i + 1 === counter) {
+              i = 0;
+            } else {
+              i++;
+              setInsertionCounter({ i, counter });
+              return;
+            }
+          }
+        }
+        if (i === 0 && counter + 1 === newArray.length) {
+          clearInterval(id);
+          return;
+        } else {
+          counter++;
+        }
+        setInsertionCounter({ i, counter });
       }
-    }
-    counter++;
-  }
+    }, ms);
+  };
 }
 
 export default insertionSort;
