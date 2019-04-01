@@ -5,7 +5,17 @@ const Visual = props => {
     return array.map((elem, i) => {
       return (
         <td key={elem}>
-          <div className='content' style={{ height: array[i] * 2 }} />
+          <div
+            className='content'
+            style={{
+              height: array[i] * 2,
+              backgroundColor: props.comparedIndices
+                ? props.comparedIndices.includes(i)
+                  ? 'red'
+                  : 'pink'
+                : null
+            }}
+          />
         </td>
       );
     });
