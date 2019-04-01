@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import Visual from './Visual';
 import bubbleSort from '../Algorithms/bubbleSort';
-const array1 = [5, 4, 3, 2, 1];
+import selectionSort from '../Algorithms/selectionSort';
+const array1 = [5, 1, 2, 3, 4];
+const array2 = [5, 4, 3, 2, 1];
 
 const App = () => {
   const [bubbleArray, setBubbleArray] = useState(array1);
@@ -10,28 +12,53 @@ const App = () => {
     length: bubbleArray.length
   });
 
-  const increaseStep = ms => {
+  const [selectionArray, setSelectionArray] = useState(array1);
+  const [selectionCounter, setSelectionCounter] = useState({
+    i: 0,
+    j: 0
+  });
+  const [selectionMinIndex, setSelectionMinIndex] = useState(0);
+
+  const onStartClick = () => {
+    increaseBubbleStep(1000);
+    increaseSelectionStep(1000);
+  };
+
+  const increaseBubbleStep = ms => {
     let step = -1;
     let length = bubbleCounter.length;
     let id = setInterval(() => {
       if (step < length - 2) {
         step++;
-        setBubbleCounter({ step, length });
       } else {
         if (length === 2) {
           clearInterval(id);
         } else {
           step = 0;
           length--;
-          setBubbleCounter({ step, length });
         }
       }
+      setBubbleCounter({ step, length });
     }, ms);
+  };
+
+  const increaseSelectionStep = ms => {
+    selectionSort(
+      selectionArray,
+      selectionCounter.i,
+      selectionCounter.j,
+      selectionMinIndex,
+      setSelectionMinIndex,
+      setSelectionArray,
+      setSelectionCounter,
+      ms
+    );
   };
 
   return (
     <div>
-      <button onClick={() => increaseStep(1000)} />
+      <button onClick={onStartClick} />
+      <div>{array1}</div>
       <Visual
         title={'Bubble Sort'}
         array={
@@ -44,6 +71,12 @@ const App = () => {
                 bubbleCounter.length
               )
         }
+      />
+      <Visual
+        title={'Selection Sort'}
+        array={selectionArray}
+        comparedIndices={[selectionCounter.i, selectionCounter.j]}
+        minIndex={selectionMinIndex}
       />
     </div>
   );
