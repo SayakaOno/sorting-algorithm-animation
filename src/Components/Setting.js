@@ -17,6 +17,7 @@ const Setting = props => {
   return (
     <div className='setting'>
       <textarea value={props.array} onChange={onChange} />
+      <p className='warning'>WARNING</p>
       <div>
         <input
           type='checkbox'
@@ -47,7 +48,10 @@ const Setting = props => {
         </label>
       </div>
       <progress value='22' max='100' />
-      <button>START</button>
+      <div className='buttons'>
+        <button onClick={props.onStartClick}>START</button>
+        <button onClick={props.onResetClick}>RESET</button>
+      </div>
     </div>
   );
 };
