@@ -1,3 +1,6 @@
+.visual {
+  background-color: bisque;
+}
 .visual table,
 .visual td {
   border-spacing: 0;
@@ -11,7 +14,9 @@
   width: 5px;
   vertical-align: bottom;
 }
-.visual div {
+.visual .bar {
   background-color: pink;
   border: solid 1px #000;
+  -webkit-transition: background-color 2s; /* Safari */
+  transition: background-color 2s;
 }

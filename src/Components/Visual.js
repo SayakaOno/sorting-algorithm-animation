@@ -6,7 +6,7 @@ const Visual = props => {
       return (
         <td key={elem}>
           <div
-            className='content'
+            className='bar'
             style={{
               height: array[i] * 2,
               backgroundColor: props.comparedIndices

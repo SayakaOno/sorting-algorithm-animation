@@ -15,11 +15,12 @@ function mergeSort(array) {
       newArray.push(left.shift());
     }
   }
-  if (left.length > 0) {
+  if (left.length) {
     newArray.push(...left);
   } else {
     newArray.push(...right);
   }
+  console.log(newArray);
   return newArray;
 }
 
